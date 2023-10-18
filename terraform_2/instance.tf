@@ -40,7 +40,7 @@ resource "yandex_compute_instance" "vm" {
   } 
 
   metadata = {
-  docker-compose = file("docker-compose.yml")
+  docker-compose = file("docker_compose.yml")
   user-data = file("cloud_config.yml")
   ssh-keys = "ditry:${file("~/.ssh/id_ed25519.pub")}"
   }
