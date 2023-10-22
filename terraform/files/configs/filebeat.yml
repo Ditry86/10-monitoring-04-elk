@@ -17,5 +17,8 @@ output.elasticsearch:
   indices:
     - index: "filebeat-%{[agent.version]}-%{+yyyy.MM.dd}"
 
+
+
+setup.kibana.host: "http://kibana:5601"
 logging.json: true
 logging.metrics.enabled: false

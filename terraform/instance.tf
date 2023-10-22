@@ -30,7 +30,7 @@ resource "yandex_compute_instance" "vm" {
   
   provisioner "remote-exec" {
     inline = [
-	    "sudo sysctl -w vm.max_map_count=262144"
+	    "sudo sysctl -w vm.max_map_count=262144",
     ]
   }
   
@@ -38,6 +38,13 @@ resource "yandex_compute_instance" "vm" {
     source = "./files"
     destination = "/tmp"
   } 
+
+  provisioner "remote-exec" {
+    inline = [
+      "sudo chown root /tmp/files/configs/filebeat.yml",
+      "sudo chmod go-w /tmp/files/configs/filebeat.yml"
+    ]
+  }
 
   metadata = {
   docker-compose = file("docker-compose.yml")

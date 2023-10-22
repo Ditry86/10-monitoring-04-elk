@@ -9,20 +9,34 @@ services:
             - "9200:9200"
         volumes:
             - elasticsearch_data:/usr/share/elasticsearch/data
+        networks:
+            - elastic
 
     kibana:
         image: "kibana:7.2.0"
         ports:
             - "5601:5601"
+#        environment:
+#            ELASTICSEARCH_URL: "http://elasticsearch:9200"
+#            ELASTICSEARCH_HOSTS: '["http://elasticsearch:9200"]'
+        networks:
+            - elastic
 
     filebeat:
         image: "elastic/filebeat:7.2.0"
         user: root
         command: filebeat -e -strict.perms=false
+        privileged: true
         volumes:
-            - ./files/configs/filebeat.yml:/usr/share/filebeat/filebeat.yml:z
-            - /var/lib/docker:/var/lib/docker:z
+            - /tmp/files/configs/filebeat.yml:/usr/share/filebeat/filebeat.yml:Z
+            - /var/lib/docker:/var/lib/docker:Z
             - /var/run/docker.sock:/var/run/docker.sock
+        networks:
+            - elastic
 
 volumes:
     elasticsearch_data:
+
+networks:
+  elastic:
+    driver: bridge
