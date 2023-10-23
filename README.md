@@ -1,8 +1,8 @@
 # 10-monitoring-03-grafana
 
-## Результаты выполнения задания
+## Результаты выполнения задания:
 
-### 1. Список запущенных контейнеров ('docker ps'):
+### 1. Список запущенных контейнеров ('docker ps').
 
 ```
 [ditry@master_home 10-monitoring-04-elk]$ docker ps
@@ -15,6 +15,6 @@ f86a7fcbb266   python:3.9-alpine        "python3 /opt/run.py"    23 minutes ago 
 2238dfa7c9d1   elasticsearch:8.7.0      "/bin/tini -- /usr/l…"   23 minutes ago   Up 19 minutes   9200/tcp, 9300/tcp                                                                               es-warm
 ```
 
-### 2. Screen-shot Kibana
+### 2. Screen-shot Kibana.
 
 ![Kibana Diskover](./adds/kibana.png)
